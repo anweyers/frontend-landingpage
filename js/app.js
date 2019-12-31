@@ -17,6 +17,8 @@
  * Define Global Variables
  * 
 */
+const listOfSections = document.querySelectorAll('section');
+const unorderedList = document.getElementById('navbar__list');
 
 
 /**
@@ -34,6 +36,10 @@
 */
 
 // build the nav
+for (let i=0; i<listOfSections.length; i++) { 
+  const container = document.createElement('li');
+  unorderedList.appendChild(container);
+  }
 
 
 // Add class 'active' to section when near top of viewport
