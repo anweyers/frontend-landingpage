@@ -44,13 +44,16 @@ function isScrolledIntoView(el) {
  * Begin Main Functions
  * 
 */
-/*** Iterieren durch de sections ****/
+/*** Iterieren durch die sections, falls im Viewport class=active hinzufügen ****/
 for (let i=0; i<listOfSections.length; i++)  {
-  console.log( 'i is' +i);
-  console.log(listOfSections[i])
+  console.log(listOfSections[i]);
   let sectionInView = isScrolledIntoView(listOfSections[i]);
   console.log("SectionInView? "+ sectionInView);
-} 
+  if (sectionInView === true) {
+    listOfSections[i].classList.add("active");
+    console.log("added class-active to "+listOfSections[i])
+  } 
+}
 
 // build the nav
 for (let i=0; i<listOfSections.length; i++) { 
