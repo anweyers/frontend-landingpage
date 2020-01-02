@@ -26,14 +26,31 @@ const unorderedList = document.getElementById('navbar__list');
  * Start Helper Functions
  * 
 */
+/*** Hilfsfkt ***/
+function isScrolledIntoView(el) {
+  var rect = el.getBoundingClientRect();
+  var elemTop = rect.top;
+  var elemBottom = rect.bottom;
 
-
+  // Only completely visible elements return true:
+  //var isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+  // Partially visible elements return true:
+  isVisible = elemTop < window.innerHeight && elemBottom >= 0;
+  return isVisible;
+}
 
 /**
  * End Helper Functions
  * Begin Main Functions
  * 
 */
+/*** Iterieren durch de sections ****/
+for (let i=0; i<listOfSections.length; i++)  {
+  console.log( 'i is' +i);
+  console.log(listOfSections[i])
+  let sectionInView = isScrolledIntoView(listOfSections[i]);
+  console.log("SectionInView? "+ sectionInView);
+} 
 
 // build the nav
 for (let i=0; i<listOfSections.length; i++) { 
