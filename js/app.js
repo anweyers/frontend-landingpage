@@ -53,6 +53,7 @@ function iterate() {
    console.log(sections[i]);
    readSectionName();
    setSectionActive();
+
   }
 }
 
@@ -71,6 +72,16 @@ function buildNav(secName) {
   link.textContent = secName;
   listitem.appendChild(link);
   unorderedList.appendChild(listitem);
+
+  // which listItem was clicked, read id :-)
+  listitem.addEventListener('click', function() {
+    let elemId=listitem.classList[1];
+    console.log(secName +' item, id: '+elemId+' was clicked!');
+    //move smoothly to id corresponding section
+    document.getElementById(elemId).scrollIntoView({
+          behavior: 'smooth'
+    });
+  });    
 }
 
 function setSectionActive() {
@@ -81,25 +92,6 @@ function setSectionActive() {
     console.log("added class-active to "+sections[i].id);
   } 
 }
-
-  /*let sectionInView = isScrolledIntoView(sections[i]); //true or false
-  console.log("SectionInView? "+ sectionInView);
-  if (sectionInView === true) {
-    sections[i].classList.add("active"); // falls sichtbar class = active setzen
-    console.log("added class-active to "+sections[i].id);
-  } 
-}*/
-
-
-
-/*const mainHeading = document.querySelector('li');
-  mainHeading.addEventListener('click', function () {
-    console.log('The heading was clicked!');
-  }); */
-
-
-
-
 
 
 // Add class 'active' to section when near top of viewport
