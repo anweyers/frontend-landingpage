@@ -19,5 +19,3 @@ I started, opening `js/app.js` and start building out the app's functionality:
 ## Setup
 Clone https://github.com/anweyers/frontend-landingpage  
 Open index.html in a browser
-
-[index.html](github.com/anweyers/frontend-landingpage)
