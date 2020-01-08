@@ -20,4 +20,4 @@ I started, opening `js/app.js` and start building out the app's functionality:
 Clone https://github.com/anweyers/frontend-landingpage  
 Open index.html in a browser
 
-[https://github.com/anweyers/frontend-landingpage/index.html](https://github.com/anweyers/frontend-landingpage/index.html)
+[index.html](github.com/anweyers/frontend-landingpage)
