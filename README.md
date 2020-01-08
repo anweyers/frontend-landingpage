@@ -16,11 +16,8 @@ I started, opening `js/app.js` and start building out the app's functionality:
 - The section in the viewport is highlighted.
 
 
-# Personal blogpost
-This is a HTML and CSS demo website where I used CSS grids and flexboxes.
-
 ## Setup
 Clone https://github.com/anweyers/frontend-landingpage  
 Open index.html in a browser
 
-[Link](https://github.com/anweyers/frontend-landingpage/index.html)
+[https://github.com/anweyers/frontend-landingpage/index.html](https://github.com/anweyers/frontend-landingpage/index.html)
