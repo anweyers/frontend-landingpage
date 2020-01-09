@@ -79,5 +79,3 @@ function activateClass() {
 window.addEventListener('scroll', function (event) {
     activateClass();
 });
-
-    
