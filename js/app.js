@@ -37,14 +37,15 @@ function isVisibleInView(el) {
  * Begin Main Functions
  * 
 */
-/* Read amount of sections */
+
+// Read amount of sections 
 for (i=0; i<sections.length; i++)  {
     const currentSection = sections[i];
     const sectionName = currentSection.getAttribute('data-nav');
     buildNav(sectionName);
 }
 
-/* Create navigation items */
+// Create nav items 
 function buildNav(sectionName) {
     let listitem = document.createElement('li');
     let link = document.createElement('a');
@@ -54,23 +55,29 @@ function buildNav(sectionName) {
     unorderedList.appendChild(listitem);
     clickAndScroll(listitem);
 }
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
-/* Click event handling */
-function clickAndScroll (listItem) {
-    let sectionInView = isVisibleInView(sections[i]);
+// onClick eventhandling
+function clickAndScroll(listItem) {
     listItem.addEventListener('click', function() {
         let elemId=listItem.classList[1];
-        let activeSection=document.getElementById(elemId);
-        for (const section of sections)  {
-            section.classList.remove("active");
-        }
-        activeSection.classList.add("active");
+        activateClass();
         document.getElementById(elemId).scrollIntoView({
             behavior: 'smooth'
       });
     });
 }
+// Set sections activ/inactiv
+function activateClass() {
+    for (const section of sections)  {
+        section.classList.remove("active");
+        if (isVisibleInView(section)===true){
+            console.log("x"+ section.id);
+            section.classList.add("active");
+        }
+    }      
+}
+// Scroll eventhandling
+window.addEventListener('scroll', function (event) {
+    activateClass();
+});
+
+    
