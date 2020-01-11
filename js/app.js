@@ -19,17 +19,22 @@
  * 
 */
 const sections = document.getElementsByTagName('section');
-const unorderedList = document.getElementById('navbar__list');
+const navbarList = document.getElementById('navbar__list');
+const unorderedList = document.getElementsByTagName('ul');
 /**
  * End Global Variables
  * Start Helper Functions
  * 
 */
-function isVisibleInView(el) {
+function isVisibleInView(el,isDownScroll) {
     var rect = el.getBoundingClientRect();
     var elemTop = rect.top;
     var elemBottom = rect.bottom;
-    isVisible = elemTop < window.innerHeight && elemBottom >= 0;
+    if (isDownScroll) {
+         isVisible = elemTop < window.innerHeight && elemBottom >= 50;
+    } else {
+        isVisible = elemTop < window.innerHeight && elemBottom >= 500;
+    }
     return isVisible;
 }
 /**
@@ -37,9 +42,9 @@ function isVisibleInView(el) {
  * Begin Main Functions
  * 
 */
-
+ 
 // Read amount of sections 
-for (i=0; i<sections.length; i++)  {
+for (i=0; i<sections.length; i++) {
     const currentSection = sections[i];
     const sectionName = currentSection.getAttribute('data-nav');
     buildNav(sectionName);
@@ -49,33 +54,51 @@ for (i=0; i<sections.length; i++)  {
 function buildNav(sectionName) {
     let listitem = document.createElement('li');
     let link = document.createElement('a');
-    listitem.classList.add('menu__link', sections[i].getAttribute('id'));
+    let li_id = sections[i].getAttribute('id');
+    listitem.classList.add('menu__link', li_id);
     link.textContent = sectionName;
     listitem.appendChild(link);
-    unorderedList.appendChild(listitem);
+    navbarList.appendChild(listitem);
     clickAndScroll(listitem);
 }
+
 // onClick eventhandling
-function clickAndScroll(listItem) {
+function clickAndScroll(listItem) { 
+    listItem.classList.remove("active");   
     listItem.addEventListener('click', function() {
+        console.log (listItem);
         let elemId=listItem.classList[1];
-        activateClass();
+        listItem.classList.add("active");
+        activateClass(true);
         document.getElementById(elemId).scrollIntoView({
             behavior: 'smooth'
-      });
+      }); 
     });
-}
-// Set sections activ/inactiv
-function activateClass() {
-    for (const section of sections)  {
-        section.classList.remove("active");
-        if (isVisibleInView(section)===true){
-            console.log("x"+ section.id);
-            section.classList.add("active");
-        }
-    }      
-}
+} 
+
 // Scroll eventhandling
+let Position = 0;
 window.addEventListener('scroll', function (event) {
-    activateClass();
+    let isDown = true;
+    newPosition = window.pageYOffset;
+    if (Position - newPosition < 0) {
+        console.log("Down");
+    } else if (Position - newPosition > 0) {
+        console.log("Up");
+        isDown = false;
+    }
+    Position = newPosition;
+    activateClass(isDown);
 });
+
+  // Set sections activ
+function activateClass(isDown) {
+    let bool = false; 
+    for (i=0; i<sections.length; i++) {
+        sections[i].classList.remove("active");
+        if (isVisibleInView(sections[i], isDown) === true && bool==false) {     
+            sections[i].classList.add("active");
+            bool=true;
+        }           
+    }
+}   
